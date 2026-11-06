@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#151515">
+<title>POMPIER ACADÉMIE</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: white;
+}
+
+header {
+  background: #191919;
+  padding: 22px 15px;
+  text-align: center;
+  border-bottom: 3px solid #e32222;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 900;
+  color: white;
+}
+
+.logo span { color: #ed2929; }
+
+header p {
+  color: #bbb;
+  font-size: 12px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 8px;
+  background: #202020;
+}
+
+nav button {
+  background: #303030;
+  color: white;
+  border: 1px solid #444;
+  padding: 11px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+nav button:hover, nav button.active {
+  background: #d92323;
+}
+
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 { font-size: 27px; }
+h2 { color: #ef3434; }
+
+.card {
+  background: #222;
+  border: 1px solid #383838;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 12px 0;
+}
+
+.card p { color: #ccc; }
+
+.action {
+  display: inline-block;
+  background: #d92323;
+  color: white;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  color: #888;
+  padding: 25px;
+  border-top: 1px solid #333;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">POMPIER <span>ACADÉMIE</span></div>
+  <p>APPRENDRE • RÉVISER • SE FORMER</p>
+</header>
+
+<nav>
+  <button class="active" onclick="showPage('accueil',this)">Accueil</button>
+  <button onclick="showPage('cours',this)">Cours</button>
+  <button onclick="showPage('qcm',this)">QCM</button>
+  <button onclick="showPage('videos',this)">Vidéos</button>
+  <button onclick="showPage('galerie',this)">Galerie</button>
+  <button onclick="showPage('apis',this)">APIS</button>
+  <button onclick="showPage('admin',this)">Administration</button>
+</nav>
+
+<main id="content">
+
+<h1>Bienvenue sur POMPIER ACADÉMIE 🚒</h1>
+<p>Ta plateforme de formation et de révision dédiée aux sapeurs-pompiers.</p>
+
+<div class="card">
+<h2>📚 Les cours</h2>
+<p>Découvre les formations et les connaissances essentielles.</p>
+<button class="action" onclick="showPage('cours')">Découvrir</button>
+</div>
+
+<div class="card">
+<h2>📝 Les QCM</h2>
+<p>Teste tes connaissances et progresse.</p>
+<button class="action" onclick="showPage('qcm')">Commencer</button>
+</div>
+
+<div class="card">
+<h2>🎬 Les vidéos</h2>
+<p>Retrouve des vidéos pédagogiques.</p>
+<button class="action" onclick="showPage('videos')">Voir les vidéos</button>
+</div>
+
+</main>
+
+<footer>
+POMPIER ACADÉMIE © 2026
+</footer>
+
+<script>
+function showPage(page,button) {
+  const content = document.getElementById("content");
+
+  document.querySelectorAll("nav button").forEach(b =>
+    b.classList.remove("active")
+  );
+
+  if(button) button.classList.add("active");
+
+  const pages = {
+    accueil: `
+      <h1>Bienvenue sur POMPIER ACADÉMIE 🚒</h1>
+      <p>Apprendre, réviser et se former.</p>
+    `,
+    cours: `
+      <h1>📚 Les cours</h1>
+      <div class="card"><h2>Matériel</h2><p>ARI, EPI, LSPCC et équipements.</p></div>
+      <div class="card"><h2>Incendie</h2><p>Connaissances théoriques sur l'incendie.</p></div>
+      <div class="card"><h2>Secours à personne</h2><p>Notions de formation et de secourisme.</p></div>
+    `,
+    qcm: `
+      <h1>📝 Les QCM</h1>
+      <div class="card">
+        <p>Quel est le rôle principal d'un ARI ?</p>
+        <button class="action" onclick="alert('Bonne réponse !')">Protéger les voies respiratoires</button>
+      </div>
+    `,
+    videos: `
+      <h1>🎬 Vidéos</h1>
+      <div class="card"><p>La bibliothèque vidéo sera disponible ici.</p></div>
+    `,
+    galerie: `
+      <h1>🖼️ Galerie</h1>
+      <div class="card"><p>Les images et schémas seront disponibles ici.</p></div>
+    `,
+    apis: `
+      <h1>🌐 APIS</h1>
+      <div class="card">
+        <p>Accède à la plateforme APIS.</p>
+        <p>Le lien officiel sera configuré à la prochaine étape.</p>
+      </div>
+    `,
+    admin: `
+      <h1>🔐 Administration</h1>
+      <div class="card">
+        <p>Ton espace administrateur sera créé ici.</p>
+        <p>Il permettra de gérer les cours, les QCM, les images et les vidéos.</p>
+      </div>
+    `
+  };
+
+  content.innerHTML = pages[page] || pages.accueil;
+}
+</script>
+
+</body>
+</html>
